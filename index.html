@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Hangman Game!</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+        var path = '//easy.myfonts.net/v2/js?sid=210119(font-family=Mr+Chalk)&key=OkoISWM1De',
+            protocol = ('https:' == document.location.protocol ? 'https:' : 'http:'),
+            trial = document.createElement('script');
+        trial.type = 'text/javascript';
+        trial.async = true;
+        trial.src = protocol + path;
+        var head = document.getElementsByTagName("head")[0];
+        head.appendChild(trial);
+    })();
+</script>
+</head>
+
+<body>
+
+  <h1>Let's Play Hangman!</h1>
+  <div id="hangmanGame">
+    <h2>Press any alphabet letter to make a guess...</h2>
+  </div>
+  <h2 id="wins"></h2>
+  <h2 id="guessesLeft"></h2>
+  <h2 id="lettersGuessed"></h2>
+  <h2 id="category"></h2>
+  <h2 id="dashedSolution"></h2> <!-- _ _ _ _ _ _ - _ _ _ -->
+
+<!-- <canvas id="myCanvas" width="400" height="800" style="border:5px solid #ffffff;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+ -->
+<!-- 
+<img src="assets/images/Jetsonslogo640x480.jpg" alt="The Jetsons" style="width:304px;height:228px;">
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/tTq6Tofmo7E?ecver=1" frameborder="0" allowfullscreen></iframe>
+ -->
+<div id="buttons">
+    </div>
+    <!-- <div class="container"> -->
+      <!-- <button id="hint">Hint</button> -->
+      <button id="restart">Play Again</button>
+    </div>
+
+
+  <script src="assets/javascript/game.js">
+
+    // Injecting the HTML we just created into our div and updating the game information on our page.
+   
+    // document.querySelector("#hangmanGame").innerHTML = html;
+
+  </script>
+
+</body>
+
+</html>
