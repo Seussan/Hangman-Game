@@ -1,32 +1,81 @@
 body {
-    background-image: url("../images/981143-blackboard.jpg");
-	font-family: 'Mr Chalk';
+	background-image: url("../images/981143-blackboard.jpg");
+
+	font-family: MrChalk;
 	color: white;
 	margin: 20px;
 }
 
 h1 {
-	font-size: 50pt;
+	font-size: 60px;
 }
 
+h2{
+	font-size: 45px;
+}
+
+h3{
+	font-size: 30px;
+}
 
 button {
-  border-radius: 5px;
-  background: #000;
-  color: #fff;
-  border: solid 1px #fff;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 18px 10px;
-  width: 180px;
-  margin: 10px;
-  outline: none;
+	border-radius: 5px;
+	background: #000;
+	color: #fff;
+	border: solid 1px #fff;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 25px;
+	padding: 18px 10px;
+	width: 180px;
+	margin: 10px;
+	outline: none;
 }
 button:hover {
-  transition: all 0.3s ease-in-out;
-  background: #fff;
-  border: solid 1px #fff;
-  color: #000;
+	transition: all 0.3s ease-in-out;
+	background: #fff;
+	border: solid 1px #fff;
+	color: #000;
 }
 
+footer {
+	position: ;
+	position: fixed;	
+	width: 100%;
+	bottom: 0;
+}
+
+.stats {
+	padding-left: 220px;
+	width: 100%;
+	bottom: 0;
+}
+
+#wins {
+	position: absolute;
+	bottom: 52px;
+}	
+
+#guessesLeft {
+	position: absolute;
+	bottom: 22px;
+}
+
+#lettersGuessed {
+	position: absolute;
+	bottom: -8px;
+}
+
+.center {
+	text-align: center;
+}
+
+.centerData {
+	clear: both;
+}
+
+#dashedSolution,
+#gameResult {
+	margin: auto;
+	text-align: center;
+}

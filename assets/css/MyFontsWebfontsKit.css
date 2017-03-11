@@ -1,0 +1,26 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3357669, 2017-03-10T20:47:10-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: MrChalk by Thinkdust
+ * URL: http://www.myfonts.com/fonts/thinkdust/mr-chalk/regular/
+ * Copyright: Copyright (c) 2012 by Hypefortype. All rights reserved.
+ * Licensed pageviews: 10,000
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3357669
+ * 
+ * © 2017 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("http://hello.myfonts.net/count/333be5");
+
+@font-face {font-family: 'MrChalk';src: url('webfonts/333BE5_0_0.eot');src: url('webfonts/333BE5_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/333BE5_0_0.woff2') format('woff2'),url('webfonts/333BE5_0_0.woff') format('woff'),url('webfonts/333BE5_0_0.ttf') format('truetype');} 

@@ -1,18 +1,16 @@
-// window.onload = function ()
-// {
-
 // VARIABLES
 // ==========================================================================
 
 // Load the lowercase alphabet into a string used to verify keystroke is valid.
 var lowerAlpha = "abcdefghijklmnopqrstuvwxyz";
 
-var guessesLeft = 11;
+var guessesLeft = 10;
 var wins = 0;
 
 var lettersGuessed = [];
 var dashedSolution = [];
 var letterGuess = "";
+var gameResult = "";
 
 // Get elements
 var displayWins = document.getElementById("wins");
@@ -20,19 +18,23 @@ var displayGuessesLeft = document.getElementById("guessesLeft");
 var displayLettersGuessed = document.getElementById("lettersGuessed");
 var displayCategory = document.getElementById("category");
 var displayDashedSolution = document.getElementById("dashedSolution");
+var displayGameResult = document.getElementById("gameResult");
+var displayVidHere = document.getElementById("vidHere");
 
-var wordList = [];
+var wordList = [ "Aeon Flux", "The Flintstones", "The Jetsons", "The Simpsons", "Beavis and Butt-Head", "Daria", "Family Guy", "King of the Hill", "The Ren & Stimpy Show", "South Park", "Archer", "Robot Chicken", "Bob's Burgers" ];
+var videoList = [ "EI9NZz33VCk", "IKiZm9RzO24", "tTq6Tofmo7E", "SR8WWFzrZAg", "KPeePg2N6QM", "OghvfLc8paM", "md32O6Zp6ww", "LUZIQufgukA", "R7tNDkEACSY", "S8p22rtNMoM", "WqHOAWChIOY", "QmRA2dhQLmU", "w62pZiv8D0Q" ];
 
-var category = "";
+var category = "Adult Animated Series";
 
 // Randomly chooses a word from the wordList array.
 // This is the Hangman word for the player to guess.
+var randomNumber = 0;
 var originalWordToGuess = "";
 var wordToGuess = "";
-// wordToGuess = wordToGuess.toLowerCase();
 
 console.log("Original word to guess: " + originalWordToGuess);
 console.log("Word to guess: " + wordToGuess);
+console.log("gameResult: " + gameResult);
 
 // FUNCTIONS
 // ==============================================================================
@@ -79,29 +81,26 @@ console.log("Word to guess: " + wordToGuess);
         dashedSolution[i] = wordToGuess[i];
     };
 
-    console.log("Added Dashes: " + dashedSolution);
-
-    return(dashedSolution);
+    console.log("Added Dashes: " + dashedSolution);    
+    console.log("To String " + dashedSolution.join(' '));
   }
 
-  updateBoard = function()
+  updateBoard = function(gameResult)
   {
 
-    displayWins.innerHTML = "Wins: " + wins;
-    displayGuessesLeft.innerHTML = "Number of Guesses Remaining: " + guessesLeft;
-    displayLettersGuessed.innerHTML = "Letters Already Guessed: " + lettersGuessed;  
     displayCategory.innerHTML = "Category: Adult Animated Series";  
-    displayDashedSolution.innerHTML = "Solve: " + dashedSolution;
+    displayDashedSolution.innerHTML = dashedSolution.join(' ');
 
+    if (gameResult != null){
+      displayGameResult.innerHTML = gameResult;
+
+    }
+
+    displayWins.innerHTML = "Wins: " + wins;
+    displayGuessesLeft.innerHTML = "Remaining Guesses: " + guessesLeft;
+    displayLettersGuessed.innerHTML = "Letters Guessed: " + lettersGuessed.join(' ');
+    
   }
-
-  // function updateBoard(dashedSolution) {
-
-  //   var newDiv = document.createElement("h1");
-  //   newDiv.innerHTML = dashedSolution[i];
-  //   targetDiv.appendChild(newDiv);
-
-  // };
 
 // MAIN PROCESS
 // ==============================================================================
@@ -122,13 +121,6 @@ document.onkeyup = function(event) {
   console.log("Letters you've guessed: " + lettersGuessed);
   console.log("Solve this: " + dashedSolution);
 
-  // document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
-  // var newDiv = $("<div>");
-  // newDiv.html(lettersGuessed);
-  // // $("#guesses").append(newDiv);
-
-  console.log(dashedSolution);
-
   if (isAlpha(letterGuess) == true)
   {
 
@@ -140,10 +132,11 @@ document.onkeyup = function(event) {
     else if (!lettersGuessed.includes(letterGuess)) {
 
       lettersGuessed.push(letterGuess);
+      updateBoard();
 
       for(var i=0; i < wordToGuess.length; i++)
       {
-        console.log("At position i = " + i + " letter is " + wordToGuess.charAt(i));
+        // console.log("At position i = " + i + " letter is " + wordToGuess.charAt(i));
 
         if (letterGuess === wordToGuess.charAt(i)) {
 
@@ -158,8 +151,13 @@ document.onkeyup = function(event) {
           if (!(dashedSolution.includes("_")) && guessesLeft > 0) {
             console.log("You Win!");
             wins++;
-            updateBoard();
-            return;
+            updateBoard("You Win!");
+
+            document.getElementById("dashedSolution").style.visibility = "hidden"; 
+            document.getElementById("gameResult").style.visibility = "hidden"; 
+
+            document.getElementById("vidHere").style.visibility = "visible"; 
+            displayVidHere.innerHTML = "<iframe width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/" + videoList[randomNumber] + "?rel=0&autoplay=1\"\" frameborder=\"0\" allowfullscreen></iframe>";
           }
         }
       }
@@ -169,6 +167,7 @@ document.onkeyup = function(event) {
         guessesLeft--;
         if (dashedSolution.includes("_") && guessesLeft <= 0) {
           console.log("Sorry, you lose!");
+          updateBoard("Sorry, You Lose!");
         }
       }
 
@@ -191,11 +190,10 @@ startPlay = function ()
   lettersGuessed = [];
   dashedSolution = [];
   letterGuess = "";
+  gameResult = displayGameResult.innerHTML = "";
 
-  wordList = [ "Aeon Flux", "The Flintstones", "The Jetsons", "The Simpsons", "Beavis and Butt-Head", "Daria", "Family Guy", "King of the Hill", "The Ren & Stimpy Show", "South Park", "Archer", "Robot Chicken", "Bob's Burgers" ];
-  category = "Adult Animated Series";
-
-  originalWordToGuess = wordList[Math.floor(Math.random() * wordList.length)];
+  randomNumber = Math.floor(Math.random() * wordList.length);
+  originalWordToGuess = wordList[randomNumber];
   wordToGuess = originalWordToGuess.toLowerCase();
 
   console.log("Original word to guess: " + originalWordToGuess);
@@ -204,31 +202,18 @@ startPlay = function ()
   buildDashedSolution();
   updateBoard();
 
-  // chosenCategory = categories[Math.floor(Math.random() * categories.length)];
-  // word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
-  // word = word.replace(/\s/g, "-");
-  // console.log(word);
-  // buttons();
-
-  // geusses = [ ];
-  // lives = 10;
-  // counter = 0;
-  // space = 0;
-  // result();
-  // comments();
-  // selectCat();
-  // canvas();
 };
 
-document.getElementById('restart').onclick = function()
+document.getElementById('playAgain').onclick = function()
 {
-  // correct.parentNode.removeChild(correct);
-  // letters.parentNode.removeChild(letters);
-  // showClue.innerHTML = "";
-  // // context.clearRect(0, 0, 400, 400);
+  document.getElementById("vidHere").style.visibility = "hidden"; 
+  document.getElementById("dashedSolution").style.visibility = "visible";
+  document.getElementById("gameResult").style.visibility = "visible";
+
+  var displayDashedSolution = document.getElementById("dashedSolution");
+  document.getElementById("dashedSolution").style.textAlign = "center";
+
   startPlay();
 };
 
 startPlay();
-
-// };
